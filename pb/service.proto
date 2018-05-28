@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "hello";
+
+// Hello Service
+//
+// Hello Service API -> Says Hello.
+package hello;
+
+import "google/api/annotations.proto";
+
+// Message represents a simple message sent to the Hello service.
+message Message {
+	// Id represents the message identifier.
+	string id = 1;
+	// The message to be sent.
+	string msg = 2;
+}
+
+// Hello service responds to incoming hello requests.
+service HelloService {
+	// Hello method receives a simple message and returns it.
+	// The message posted as the id parameter will also be returned.
+	rpc Hello(Message) returns (Message) {
+		option (google.api.http) = {
+			post: "/v1/example/hello/{id}/{msg}"
+		};
+	}
+}
+
