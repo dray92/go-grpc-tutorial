@@ -5,13 +5,14 @@ import (
 
 	"net"
 
+	"github.com/dray92/go-grpc-tutorial/internal/server"
 	pb "github.com/dray92/go-grpc-tutorial/pb"
 	"github.com/golang/glog"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 )
 
-// Implements of HelloServiceServer
+// Implementation of HelloServiceServer
 
 type helloServer struct{}
 
@@ -25,7 +26,7 @@ func (s *helloServer) Hello(ctx context.Context, msg *pb.Message) (*pb.Message, 
 }
 
 func Run() error {
-	listen, err := net.Listen("tcp", ":50051")
+	listen, err := net.Listen(server.DefaultGRPCServerConfig.Network, server.DefaultGRPCServerConfig.Address)
 	if err != nil {
 		return err
 	}
