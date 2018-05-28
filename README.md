@@ -98,3 +98,15 @@ Will display
   "msg": "world"
 }
 ```
+
+## Generate Swagger JSON
+[`pb/service.swagger.json`](https://github.com/dray92/go-grpc-tutorial/blob/master/pb/service.swagger.json)
+
+To generate:
+```bash
+protoc -I/usr/local/include -I. \
+  -I$GOPATH/src \
+  -I$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+  --swagger_out=logtostderr=true:. \
+  pb/service.proto
+```
