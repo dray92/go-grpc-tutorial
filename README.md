@@ -11,7 +11,8 @@ Instructions on how to run client/server in other languages.
 - generate gateway code for HTTP/JSON reverse proxy.
 
 ## TODO
-- get Swagger UI to render service's Swagger JSON.
+- get Swagger UI to render service's Swagger JSON (with auth)
+- auth definitions in proto
 - investigate python reverse proxy support [#398](https://github.com/grpc-ecosystem/grpc-gateway/issues/398)
 - write up instructions for java {[grpc-jersey](https://github.com/fullcontact/grpc-jersey)}
 - find a contributor for nodejs
