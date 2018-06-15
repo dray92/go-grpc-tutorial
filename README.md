@@ -93,7 +93,7 @@ go run server/server-rproxy.go
 
 ...
 
-curl -X POST "http://localhost:8080/v1/example/hello/v1/world | jq ."
+curl -X POST "http://localhost:8080/v1/example/hello/v1/world" | jq .
 ```
 
 Will display 
