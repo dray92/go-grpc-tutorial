@@ -14,6 +14,8 @@ message Message {
 	string id = 1;
 	// The message to be sent.
 	string msg = 2;
+
+
 }
 
 // Hello service responds to incoming hello requests.

@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"net"
 
@@ -22,7 +23,13 @@ func newHelloServer() pb.HelloServiceServer {
 
 func (s *helloServer) Hello(ctx context.Context, msg *pb.Message) (*pb.Message, error) {
 	glog.Info(msg)
-	return msg, nil
+	fmt.Printf("Received message: %+v\n", msg)
+
+	ack := pb.Message{
+		Id: msg.Id,
+		Msg: fmt.Sprintf("Acknowledging message: \"%s\"!", msg.Msg),
+	}
+	return &ack, nil
 }
 
 func Run() error {
