@@ -25,9 +25,17 @@ func (s *helloServer) Hello(ctx context.Context, msg *pb.Message) (*pb.Message, 
 	glog.Info(msg)
 	fmt.Printf("Received message: %+v\n", msg)
 
+	if alternativeAuth := msg.GetVerySecureAlternativeAuth(); alternativeAuth != "" {
+		fmt.Println("picked up alternative auth from oneof")
+	} else if auth := msg.GetAuth(); auth != nil {
+		fmt.Println("picked up traditional auth from oneof")
+		auth.
+	}
+
 	ack := pb.Message{
 		Id: msg.Id,
 		Msg: fmt.Sprintf("Acknowledging message: \"%s\"!", msg.Msg),
+
 	}
 	return &ack, nil
 }

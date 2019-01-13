@@ -28,6 +28,10 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
+var (
+	filter_HelloService_Hello_0 = &utilities.DoubleArray{Encoding: map[string]int{"id": 0, "msg": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+)
+
 func request_HelloService_Hello_0(ctx context.Context, marshaler runtime.Marshaler, client HelloServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Message
 	var metadata runtime.ServerMetadata
@@ -61,6 +65,10 @@ func request_HelloService_Hello_0(ctx context.Context, marshaler runtime.Marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "msg", err)
 	}
 
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_HelloService_Hello_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
 	msg, err := client.Hello(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
@@ -76,14 +84,14 @@ func RegisterHelloServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.S
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Printf("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Printf("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -97,8 +105,8 @@ func RegisterHelloServiceHandler(ctx context.Context, mux *runtime.ServeMux, con
 	return RegisterHelloServiceHandlerClient(ctx, mux, NewHelloServiceClient(conn))
 }
 
-// RegisterHelloServiceHandler registers the http handlers for service HelloService to "mux".
-// The handlers forward requests to the grpc endpoint over the given implementation of "HelloServiceClient".
+// RegisterHelloServiceHandlerClient registers the http handlers for service HelloService
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "HelloServiceClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "HelloServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "HelloServiceClient" to call the correct interceptors.
@@ -107,15 +115,6 @@ func RegisterHelloServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 	mux.Handle("POST", pattern_HelloService_Hello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
-		if cn, ok := w.(http.CloseNotifier); ok {
-			go func(done <-chan struct{}, closed <-chan bool) {
-				select {
-				case <-done:
-				case <-closed:
-					cancel()
-				}
-			}(ctx.Done(), cn.CloseNotify())
-		}
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		rctx, err := runtime.AnnotateContext(ctx, mux, req)
 		if err != nil {

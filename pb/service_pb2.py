@@ -7,7 +7,6 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
-from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -20,11 +19,38 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='pb/service.proto',
   package='hello',
   syntax='proto3',
-  serialized_pb=_b('\n\x10pb/service.proto\x12\x05hello\x1a\x1cgoogle/api/annotations.proto\"\"\n\x07Message\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03msg\x18\x02 \x01(\t2]\n\x0cHelloService\x12M\n\x05Hello\x12\x0e.hello.Message\x1a\x0e.hello.Message\"$\x82\xd3\xe4\x93\x02\x1e\"\x1c/v1/example/hello/{id}/{msg}B\x07Z\x05hellob\x06proto3')
+  serialized_options=_b('Z\005hello'),
+  serialized_pb=_b('\n\x10pb/service.proto\x12\x05hello\x1a\x1cgoogle/api/annotations.proto\"\x82\x01\n\x07Message\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0b\n\x03msg\x18\x02 \x01(\t\x12\x1b\n\x04\x61uth\x18\x03 \x01(\x0b\x32\x0b.hello.AuthH\x00\x12&\n\x1cvery_secure_alternative_auth\x18\x04 \x01(\tH\x00\x42\x19\n\x17optional_authentication\"\xec\x01\n\x04\x41uth\x12\x12\n\x08has_none\x18\x01 \x01(\x08H\x00\x12\x11\n\x07has_jwt\x18\x02 \x01(\x08H\x00\x12\x12\n\x08has_hmac\x18\x03 \x01(\x08H\x00\x12.\n\x04\x61uth\x18\x04 \x01(\x0e\x32 .hello.Auth.authentication_types\x12$\n\x1c\x61uth_identification_document\x18\x05 \x01(\t\"3\n\x14\x61uthentication_types\x12\x08\n\x04none\x10\x00\x12\x07\n\x03jwt\x10\x01\x12\x08\n\x04hmac\x10\x02\x42\x1e\n\x1coptional_authentication_type2]\n\x0cHelloService\x12M\n\x05Hello\x12\x0e.hello.Message\x1a\x0e.hello.Message\"$\x82\xd3\xe4\x93\x02\x1e\"\x1c/v1/example/hello/{id}/{msg}B\x07Z\x05hellob\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
 
+
+_AUTH_AUTHENTICATION_TYPES = _descriptor.EnumDescriptor(
+  name='authentication_types',
+  full_name='hello.Auth.authentication_types',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    _descriptor.EnumValueDescriptor(
+      name='none', index=0, number=0,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='jwt', index=1, number=1,
+      serialized_options=None,
+      type=None),
+    _descriptor.EnumValueDescriptor(
+      name='hmac', index=2, number=2,
+      serialized_options=None,
+      type=None),
+  ],
+  containing_type=None,
+  serialized_options=None,
+  serialized_start=344,
+  serialized_end=395,
+)
+_sym_db.RegisterEnumDescriptor(_AUTH_AUTHENTICATION_TYPES)
 
 
 _MESSAGE = _descriptor.Descriptor(
@@ -40,31 +66,130 @@ _MESSAGE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='msg', full_name='hello.Message.msg', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, file=DESCRIPTOR),
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='auth', full_name='hello.Message.auth', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='very_secure_alternative_auth', full_name='hello.Message.very_secure_alternative_auth', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
   nested_types=[],
   enum_types=[
   ],
-  options=None,
+  serialized_options=None,
   is_extendable=False,
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
+    _descriptor.OneofDescriptor(
+      name='optional_authentication', full_name='hello.Message.optional_authentication',
+      index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=57,
-  serialized_end=91,
+  serialized_start=58,
+  serialized_end=188,
 )
 
+
+_AUTH = _descriptor.Descriptor(
+  name='Auth',
+  full_name='hello.Auth',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='has_none', full_name='hello.Auth.has_none', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='has_jwt', full_name='hello.Auth.has_jwt', index=1,
+      number=2, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='has_hmac', full_name='hello.Auth.has_hmac', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='auth', full_name='hello.Auth.auth', index=3,
+      number=4, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='auth_identification_document', full_name='hello.Auth.auth_identification_document', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+    _AUTH_AUTHENTICATION_TYPES,
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='optional_authentication_type', full_name='hello.Auth.optional_authentication_type',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=191,
+  serialized_end=427,
+)
+
+_MESSAGE.fields_by_name['auth'].message_type = _AUTH
+_MESSAGE.oneofs_by_name['optional_authentication'].fields.append(
+  _MESSAGE.fields_by_name['auth'])
+_MESSAGE.fields_by_name['auth'].containing_oneof = _MESSAGE.oneofs_by_name['optional_authentication']
+_MESSAGE.oneofs_by_name['optional_authentication'].fields.append(
+  _MESSAGE.fields_by_name['very_secure_alternative_auth'])
+_MESSAGE.fields_by_name['very_secure_alternative_auth'].containing_oneof = _MESSAGE.oneofs_by_name['optional_authentication']
+_AUTH.fields_by_name['auth'].enum_type = _AUTH_AUTHENTICATION_TYPES
+_AUTH_AUTHENTICATION_TYPES.containing_type = _AUTH
+_AUTH.oneofs_by_name['optional_authentication_type'].fields.append(
+  _AUTH.fields_by_name['has_none'])
+_AUTH.fields_by_name['has_none'].containing_oneof = _AUTH.oneofs_by_name['optional_authentication_type']
+_AUTH.oneofs_by_name['optional_authentication_type'].fields.append(
+  _AUTH.fields_by_name['has_jwt'])
+_AUTH.fields_by_name['has_jwt'].containing_oneof = _AUTH.oneofs_by_name['optional_authentication_type']
+_AUTH.oneofs_by_name['optional_authentication_type'].fields.append(
+  _AUTH.fields_by_name['has_hmac'])
+_AUTH.fields_by_name['has_hmac'].containing_oneof = _AUTH.oneofs_by_name['optional_authentication_type']
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
+DESCRIPTOR.message_types_by_name['Auth'] = _AUTH
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,), dict(
@@ -74,18 +199,24 @@ Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,
   ))
 _sym_db.RegisterMessage(Message)
 
+Auth = _reflection.GeneratedProtocolMessageType('Auth', (_message.Message,), dict(
+  DESCRIPTOR = _AUTH,
+  __module__ = 'pb.service_pb2'
+  # @@protoc_insertion_point(class_scope:hello.Auth)
+  ))
+_sym_db.RegisterMessage(Auth)
 
-DESCRIPTOR.has_options = True
-DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('Z\005hello'))
+
+DESCRIPTOR._options = None
 
 _HELLOSERVICE = _descriptor.ServiceDescriptor(
   name='HelloService',
   full_name='hello.HelloService',
   file=DESCRIPTOR,
   index=0,
-  options=None,
-  serialized_start=93,
-  serialized_end=186,
+  serialized_options=None,
+  serialized_start=429,
+  serialized_end=522,
   methods=[
   _descriptor.MethodDescriptor(
     name='Hello',
@@ -94,7 +225,7 @@ _HELLOSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_MESSAGE,
     output_type=_MESSAGE,
-    options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\036\"\034/v1/example/hello/{id}/{msg}')),
+    serialized_options=_b('\202\323\344\223\002\036\"\034/v1/example/hello/{id}/{msg}'),
   ),
 ])
 _sym_db.RegisterServiceDescriptor(_HELLOSERVICE)

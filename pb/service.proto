@@ -14,8 +14,27 @@ message Message {
 	string id = 1;
 	// The message to be sent.
 	string msg = 2;
+	// THIS IS NOT A SECURE WAY OF ACHIEVING AUTH INCLUDED
+	// HERE FOR DEMONSTRATING FUNCTIONALITY OF oneof AND enum.
+	oneof optional_authentication {
+		Auth auth = 3;
+		string very_secure_alternative_auth = 4;
+	}
+}
 
-
+message Auth {
+	oneof optional_authentication_type {
+		bool has_none = 1;
+		bool has_jwt = 2;
+		bool has_hmac = 3;
+	}
+	enum authentication_types {
+		none = 0;
+		jwt = 1;
+		hmac = 2;
+	}
+	authentication_types auth = 4;
+	string auth_identification_document = 5;
 }
 
 // Hello service responds to incoming hello requests.
